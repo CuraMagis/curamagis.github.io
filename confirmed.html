@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CuraMagis — Subscription confirmed</title>
+<meta name="description" content="Your subscription to CuraMagis is confirmed.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/icon-compass-navybg.png">
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    background: var(--grad-navy);
+    color: var(--on-navy);
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+
+  .cs-watermark {
+    position: fixed;
+    width: min(140vh, 1100px);
+    aspect-ratio: 1 / 1;
+    right: -22vh;
+    bottom: -30vh;
+    opacity: 0.05;
+    pointer-events: none;
+    user-select: none;
+  }
+  .cs-rule {
+    height: 3px;
+    width: 100%;
+    background: var(--grad-gold);
+    flex: 0 0 auto;
+  }
+
+  .cs-shell {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: clamp(28px, 5vw, 56px) clamp(24px, 6vw, 64px);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cs-top {
+    flex: 0 0 auto;
+    padding-top: clamp(8px, 3vh, 40px);
+  }
+  .cs-top img { height: 34px; width: auto; display: block; }
+
+  .cs-main {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 680px;
+    padding: clamp(40px, 8vh, 96px) 0;
+  }
+
+  /* Confirmation mark — thin gold ring + check (Lucide-style stroke) */
+  .cs-mark {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--gold-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 clamp(24px, 4vh, 36px);
+    box-shadow: 0 0 0 6px rgba(232,185,77,0.08);
+  }
+  .cs-mark svg { display: block; }
+  .cs-mark path {
+    stroke-dasharray: 28;
+    stroke-dashoffset: 28;
+    animation: csDraw 600ms var(--ease-out) 240ms forwards;
+  }
+  @keyframes csDraw { to { stroke-dashoffset: 0; } }
+
+  .cs-eyebrow {
+    font-size: var(--fs-eyebrow);
+    font-weight: 600;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--gold-mid);
+    margin: 0 0 clamp(16px, 2.4vh, 22px);
+  }
+
+  .cs-display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2.5rem, 6vw, 4.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--on-navy);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .cs-display em { font-style: italic; color: var(--gold-mid); }
+
+  .cs-lead {
+    font-size: clamp(1.0625rem, 1.6vw, 1.3125rem);
+    line-height: 1.55;
+    color: var(--on-navy-soft);
+    margin: clamp(22px, 3.6vh, 32px) 0 0;
+    max-width: 54ch;
+    text-wrap: pretty;
+  }
+
+  /* Close row */
+  .cs-close {
+    margin-top: clamp(30px, 5vh, 44px);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px 22px;
+  }
+  .cs-btn {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--on-navy);
+    background: transparent;
+    border: 1px solid var(--navy-line);
+    border-radius: var(--radius-md);
+    padding: 13px 24px;
+    cursor: pointer;
+    transition: border-color var(--dur) var(--ease-out), background var(--dur) var(--ease-out);
+  }
+  .cs-btn:hover { border-color: var(--gold-mid); background: rgba(255,255,255,0.05); }
+  .cs-btn:active { transform: translateY(1px); }
+
+  .cs-timer {
+    font-size: var(--fs-caption);
+    color: var(--on-navy-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .cs-timer b { color: var(--on-navy-soft); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  .cs-foot {
+    flex: 0 0 auto;
+    padding: clamp(20px, 3vh, 32px) 0 clamp(12px, 2vh, 20px);
+    border-top: 1px solid var(--navy-line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--fs-caption);
+    color: var(--on-navy-muted);
+  }
+  .cs-foot a { color: var(--on-navy-soft); text-decoration: none; }
+  .cs-foot a:hover { color: var(--gold-mid); }
+
+  @keyframes csRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  .cs-anim { opacity: 0; animation: csRise var(--dur-slow) var(--ease-out) forwards; }
+  .cs-anim.d1 { animation-delay: 80ms; }
+  .cs-anim.d2 { animation-delay: 180ms; }
+  .cs-anim.d3 { animation-delay: 300ms; }
+  .cs-anim.d4 { animation-delay: 420ms; }
+  @media (prefers-reduced-motion: reduce) {
+    .cs-anim { animation: none; opacity: 1; }
+    .cs-mark path { animation: none; stroke-dashoffset: 0; }
+  }
+
+  @media (max-width: 600px) {
+    .cs-foot { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<img class="cs-watermark" src="assets/icon-compass-white.png" alt="">
+<div class="cs-rule"></div>
+
+<div class="cs-shell">
+  <header class="cs-top cs-anim">
+    <img src="assets/logo-horizontal-white.png" alt="CuraMagis">
+  </header>
+
+  <main class="cs-main">
+    <div class="cs-mark cs-anim d1" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--gold-mid)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6 9 17l-5-5"></path>
+      </svg>
+    </div>
+    <p class="cs-eyebrow cs-anim d1">Subscription confirmed</p>
+    <h1 class="cs-display cs-anim d2">You're on the <em>list</em>.</h1>
+    <p class="cs-lead cs-anim d3">Thank you for confirming. We'll write to you the moment our full site is ready — and never more often than we'd want to hear from us. We're glad you're here.</p>
+
+    <div class="cs-close cs-anim d4">
+      <button class="cs-btn" id="closeBtn" type="button">Close this window</button>
+      <p class="cs-timer" id="timer">This window will close automatically in <b id="count">10</b>&nbsp;seconds.</p>
+    </div>
+  </main>
+
+  <footer class="cs-foot cs-anim d4">
+    <span>© 2026 CuraMagis. Private college admissions counseling.</span>
+    <span><a href="mailto:hello@curamagis.com">hello@curamagis.com</a></span>
+  </footer>
+</div>
+
+<script>
+  document.getElementById("csYear").textContent = new Date().getFullYear();
+
+  var timerEl = document.getElementById("timer");
+  var countEl = document.getElementById("count");
+  var closeBtn = document.getElementById("closeBtn");
+  var seconds = 10;
+  var interval = null;
+
+  // Browsers only allow window.close() on script-opened tabs. A tab reached from
+  // an email confirmation link usually can't be closed programmatically — so we
+  // attempt it, then fall back to a calm "you can close this tab" message.
+  function attemptClose() {
+    window.close();
+    // If we're still here a moment later, closing was blocked.
+    setTimeout(showManualFallback, 350);
+  }
+
+  function showManualFallback() {
+    if (interval) { clearInterval(interval); interval = null; }
+    timerEl.innerHTML = "You can safely close this tab now.";
+  }
+
+  function tick() {
+    seconds -= 1;
+    if (seconds <= 0) {
+      clearInterval(interval);
+      interval = null;
+      attemptClose();
+      return;
+    }
+    countEl.textContent = seconds;
+  }
+
+  interval = setInterval(tick, 1000);
+
+  closeBtn.addEventListener("click", function () {
+    if (interval) { clearInterval(interval); interval = null; }
+    attemptClose();
+  });
+</script>
+</body>
+</html>

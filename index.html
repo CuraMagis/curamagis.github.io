@@ -3,52 +3,286 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CuraMagis — Boutique College Admissions Counseling</title>
+<title>CuraMagis — Coming soon</title>
+<meta name="description" content="CuraMagis is a boutique college admissions consulting firm. Our full site is on its way.">
 <link rel="icon" href="assets/icon-compass-navybg.png">
 <link rel="stylesheet" href="colors_and_type.css">
 <style>
   * { box-sizing: border-box; }
-  html, body { margin: 0; background: var(--paper); }
-  body { font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    background: var(--grad-navy);
+    color: var(--on-navy);
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
   a { color: inherit; }
-  @keyframes cmFade { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes cmRise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-  .cm-menu-btn { display: none !important; }
-  @media (max-width: 860px) {
-    .cm-desktop-nav { display: none !important; }
-    .cm-menu-btn { display: block !important; }
-    .cm-grid-3, .cm-grid-2 { grid-template-columns: 1fr !important; }
-    .cm-foot-grid { grid-template-columns: 1fr 1fr !important; }
+
+  /* Oversized compass watermark, very low opacity */
+  .cs-watermark {
+    position: fixed;
+    width: min(140vh, 1100px);
+    aspect-ratio: 1 / 1;
+    right: -22vh;
+    bottom: -30vh;
+    opacity: 0.05;
+    pointer-events: none;
+    user-select: none;
+  }
+  /* Thin gold top rule — signature treatment */
+  .cs-rule {
+    height: 3px;
+    width: 100%;
+    background: var(--grad-gold);
+    flex: 0 0 auto;
+  }
+
+  .cs-shell {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: clamp(28px, 5vw, 56px) clamp(24px, 6vw, 64px);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cs-top {
+    flex: 0 0 auto;
+    padding-top: clamp(8px, 3vh, 40px);
+  }
+  .cs-top img { height: 34px; width: auto; display: block; }
+
+  .cs-main {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 760px;
+    padding: clamp(40px, 8vh, 96px) 0;
+  }
+
+  .cs-eyebrow {
+    font-size: var(--fs-eyebrow);
+    font-weight: 600;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--gold-mid);
+    margin: 0 0 clamp(20px, 3vh, 32px);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .cs-eyebrow::after {
+    content: "";
+    height: 1px;
+    width: 56px;
+    background: rgba(232,185,77,0.5);
+  }
+
+  .cs-display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2.75rem, 7vw, 5rem);
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    color: var(--on-navy);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .cs-display em {
+    font-style: italic;
+    color: var(--gold-mid);
+  }
+
+  .cs-lead {
+    font-size: clamp(1.0625rem, 1.6vw, 1.3125rem);
+    line-height: 1.55;
+    color: var(--on-navy-soft);
+    margin: clamp(24px, 4vh, 36px) 0 0;
+    max-width: 56ch;
+    text-wrap: pretty;
+  }
+
+  /* Notify form */
+  .cs-form {
+    margin-top: clamp(32px, 5vh, 48px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    max-width: 540px;
+  }
+  .cs-input {
+    flex: 1 1 260px;
+    min-width: 0;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--on-navy);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--navy-line);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    transition: border-color var(--dur) var(--ease-out), background var(--dur) var(--ease-out);
+  }
+  .cs-input::placeholder { color: var(--on-navy-muted); }
+  .cs-input:focus {
+    outline: none;
+    border-color: var(--gold-mid);
+    background: rgba(255,255,255,0.09);
+    box-shadow: 0 0 0 3px rgba(206,162,47,0.25);
+  }
+  .cs-btn {
+    flex: 0 0 auto;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--navy-deep);
+    background: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: var(--radius-md);
+    padding: 14px 26px;
+    cursor: pointer;
+    transition: background var(--dur) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+  }
+  .cs-btn:hover { background: var(--gold-mid); }
+  .cs-btn:active { transform: translateY(1px); }
+
+  .cs-note {
+    font-size: var(--fs-caption);
+    color: var(--on-navy-muted);
+    margin: 16px 0 0;
+    line-height: 1.5;
+  }
+  .cs-note a { color: var(--gold-mid); text-decoration: none; border-bottom: 1px solid rgba(232,185,77,0.4); padding-bottom: 1px; }
+  .cs-note a:hover { border-bottom-color: var(--gold-mid); }
+
+  /* Success state */
+  .cs-success {
+    margin-top: clamp(32px, 5vh, 48px);
+    max-width: 540px;
+    display: none;
+  }
+  .cs-success.is-visible { display: block; animation: csRise var(--dur-slow) var(--ease-out) both; }
+  .cs-form.is-hidden { display: none; }
+  .cs-success-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.625rem;
+    color: var(--gold-mid);
+    margin: 0 0 8px;
+  }
+  .cs-success-body { font-size: 1.0625rem; color: var(--on-navy-soft); line-height: 1.55; margin: 0; }
+
+  .cs-foot {
+    flex: 0 0 auto;
+    padding: clamp(20px, 3vh, 32px) 0 clamp(12px, 2vh, 20px);
+    border-top: 1px solid var(--navy-line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--fs-caption);
+    color: var(--on-navy-muted);
+  }
+  .cs-foot a { color: var(--on-navy-soft); text-decoration: none; }
+  .cs-foot a:hover { color: var(--gold-mid); }
+  .cs-foot-links { display: flex; gap: 24px; flex-wrap: wrap; }
+
+  @keyframes csRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  .cs-anim { opacity: 0; animation: csRise var(--dur-slow) var(--ease-out) forwards; }
+  .cs-anim.d1 { animation-delay: 80ms; }
+  .cs-anim.d2 { animation-delay: 180ms; }
+  .cs-anim.d3 { animation-delay: 300ms; }
+  .cs-anim.d4 { animation-delay: 420ms; }
+  @media (prefers-reduced-motion: reduce) {
+    .cs-anim { animation: none; opacity: 1; }
+    .cs-success.is-visible { animation: none; }
+  }
+
+  @media (max-width: 600px) {
+    .cs-foot { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
 <body>
-<div id="root"></div>
+<img class="cs-watermark" src="assets/icon-compass-white.png" alt="">
+<div class="cs-rule"></div>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<div class="cs-shell">
+  <header class="cs-top cs-anim">
+    <img src="assets/logo-horizontal-white.png" alt="CuraMagis">
+  </header>
 
-<script type="text/babel" src="Primitives.jsx"></script>
-<script type="text/babel" src="Header.jsx"></script>
-<script type="text/babel" src="Hero.jsx"></script>
-<script type="text/babel" src="Sections.jsx"></script>
-<script type="text/babel" src="ContactDialog.jsx"></script>
-<script type="text/babel" src="Footer.jsx"></script>
-<script type="text/babel" src="App.jsx"></script>
+  <main class="cs-main">
+    <p class="cs-eyebrow cs-anim d1">Launching soon</p>
+    <h1 class="cs-display cs-anim d1">Guidance for the<br>journey <em>ahead</em>.</h1>
+    <p class="cs-lead cs-anim d2">CuraMagis is a boutique college admissions practice built on a simple belief: every student has a story worth telling, and our job is the years of work that make it true.</p>
+    <p class="cs-lead cs-anim d2">Our full site is on its way — leave your email, and we'll let you know the moment it's ready.</p>
+
+    <form class="cs-form cs-anim d3" id="notifyForm"
+          action="https://app.kit.com/forms/9542660/subscriptions" method="post"
+          target="ckSink" novalidate>
+      <input class="cs-input" type="email" id="notifyEmail" name="email_address" placeholder="Your email address" autocomplete="email" required aria-label="Your email address">
+      <button class="cs-btn" type="submit">Keep me posted</button>
+    </form>
+    <!-- Kit (ConvertKit) posts here; hidden iframe keeps the visitor on this page -->
+    <iframe name="ckSink" title="Subscription handler" aria-hidden="true" tabindex="-1" style="position:absolute;width:0;height:0;border:0;visibility:hidden;"></iframe>
+    <p class="cs-note cs-anim d4" id="notifyNote">
+      We'll only reach out about the launch. Prefer to talk now?
+      Email us at <a href="mailto:hello@curamagis.com">hello@curamagis.com</a>.
+    </p>
+
+    <div class="cs-success" id="notifySuccess" role="status" aria-live="polite">
+      <p class="cs-success-title">One more step.</p>
+      <p class="cs-success-body">Thank you — please check your inbox and click the confirmation link to finish subscribing. We'll be in touch as we approach launch.</p>
+    </div>
+  </main>
+
+  <footer class="cs-foot cs-anim d4">
+    <span>© 2026 CuraMagis. Private college admissions counseling.</span>
+    <span class="cs-foot-links">
+      <a href="mailto:hello@curamagis.com">hello@curamagis.com</a>
+    </span>
+  </footer>
+</div>
 
 <script>
-  (function () {
-    var tries = 0;
-    function go() {
-      if (window.React && window.ReactDOM && typeof window.CuraApp === "function") {
-        ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(window.CuraApp));
-        return;
-      }
-      if (tries++ < 400) setTimeout(go, 25);
+  document.getElementById("csYear").textContent = new Date().getFullYear();
+
+  var form = document.getElementById("notifyForm");
+  var email = document.getElementById("notifyEmail");
+  var note = document.getElementById("notifyNote");
+  var success = document.getElementById("notifySuccess");
+
+  form.addEventListener("submit", function (e) {
+    var value = (email.value || "").trim();
+    var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    if (!ok) {
+      // Invalid — block submission and flag the field.
+      e.preventDefault();
+      email.focus();
+      email.style.borderColor = "var(--gold-mid)";
+      email.style.boxShadow = "0 0 0 3px rgba(206,162,47,0.25)";
+      return;
     }
-    go();
-  })();
+    // Valid — let the form POST to Kit (form 9542660) into the hidden iframe so
+    // the visitor stays on this page, then show our confirmation. Kit sends a
+    // double opt-in email; the visitor must click the link to complete signup.
+    setTimeout(function () {
+      form.classList.add("is-hidden");
+      note.style.display = "none";
+      success.classList.add("is-visible");
+    }, 120);
+  });
 </script>
 </body>
 </html>
