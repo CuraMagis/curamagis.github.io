@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Katie Burns — CuraMagis College Admissions Counseling</title>
+<meta name="description" content="Katie Burns, former MIT admissions officer and IvyWise Premier counselor, works with a small number of students each year through CuraMagis.">
+<link rel="icon" href="assets/icon-compass-navybg.png">
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); }
+  body { font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  a:hover { color: var(--accent-ink); }
+  @keyframes cmFade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes cmRise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .cm-menu-btn { display: none !important; }
+  .cm-watermark { position: absolute; pointer-events: none; background-color: rgba(255,255,255,0.07); -webkit-mask: url("assets/icon-compass-white.png") center/contain no-repeat; mask: url("assets/icon-compass-white.png") center/contain no-repeat; }
+  .cm-watermark-hero { width: 720px; height: 720px; top: -140px; right: -200px; }
+  .cm-watermark-cta { width: 460px; height: 460px; left: -120px; bottom: -160px; }
+  @media (max-width: 900px) {
+    .cm-watermark-hero { width: 420px; height: 420px; top: -90px; right: -150px; }
+    .cm-watermark-cta { width: 300px; height: 300px; left: -100px; bottom: -110px; }
+  }
+  @media (max-width: 1040px) {
+    .cm-desktop-nav { display: none !important; }
+    .cm-menu-btn { display: block !important; }
+    .cm-grid-3, .cm-grid-2 { grid-template-columns: 1fr !important; }
+    .cm-cols-2 { column-count: 1 !important; }
+    .cm-foot-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (max-width: 900px) {
+    .cm-hero-grid { display: flex !important; flex-direction: column; gap: 34px !important; align-items: stretch !important; }
+    .cm-hero-text { display: contents; }
+    .cm-hero-lede { order: 1; }
+    .cm-hero-photo { order: 2; align-self: flex-start; width: 100%; max-width: 340px; }
+    .cm-hero-body { order: 3; }
+    .cm-hero-body > p:first-child { margin-top: 0 !important; }
+  }
+  @media (max-width: 768px) {
+    .cm-hero-cta { justify-content: center; }
+  }
+  @media (max-width: 620px) {
+    .cm-hero-lede { text-align: center; }
+    .cm-hero-lede > div:first-child { display: flex; justify-content: center; }
+    .cm-hero-lede p { max-width: none !important; margin-left: auto !important; margin-right: auto !important; }
+    .cm-hero-photo { align-self: stretch; max-width: none !important; text-align: center; }
+    .cm-hero-photo > div:first-child { aspect-ratio: 4 / 3 !important; }
+    .cm-hero-photo img { object-position: 50% 22% !important; }
+  }
+  @media (max-width: 1040px) {
+    .cm-hero-rail { flex-wrap: wrap !important; }
+  }
+  @media (max-width: 767px) {
+    .cm-grid-2-md { grid-template-columns: 1fr !important; }
+    .cm-cols-2-md { column-count: 1 !important; }
+    .cm-acc-body { padding-left: 0 !important; gap: 24px !important; }
+  }
+  @media (max-width: 1040px) and (min-width: 501px) {
+    .cm-cta-compact { display: block !important; }
+  }
+  @media (max-width: 1040px) and (min-width: 701px) {
+    .cm-grid-pillars { gap: 18px !important; }
+    .cm-grid-pillars h3 { font-size: 25px !important; }
+    .cm-grid-pillars > div > div { padding: 26px 22px !important; }
+  }
+  @media (max-width: 700px) {
+    .cm-grid-pillars { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 1200px) and (min-width: 1024px) {
+    .cm-grid-2-lg { gap: 40px !important; }
+  }
+  @media (max-width: 1023px) {
+    .cm-grid-2-lg { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 560px) {
+    .cm-stack-sm { grid-template-columns: 1fr !important; gap: 22px !important; padding: 26px 24px !important; }
+    .cm-stack-sm > :first-child { max-width: 112px; }
+  }
+  @keyframes cmMarqueeL { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes cmMarqueeR { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  .cm-map-scroll { overflow-x: auto; }
+  .cm-scrim { display: inline-block; padding: 5px 12px; border-radius: var(--radius-sm); background: color-mix(in srgb, var(--paper) 72%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  html { scroll-behavior: smooth; }
+  section[id] { scroll-margin-top: 90px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="src/Primitives.jsx"></script>
+<script type="text/babel" src="src/Sections.jsx"></script>
+<script type="text/babel" src="src/ContactDialog.jsx"></script>
+<script type="text/babel" src="src-katie/HeaderKatie.jsx"></script>
+<script type="text/babel" src="src-katie/HeroKatie.jsx"></script>
+<script type="text/babel" src="src-katie/SectionsKatie.jsx"></script>
+<script type="text/babel" src="src-katie/FooterKatie.jsx"></script>
+<script type="text/babel" src="src-katie/AppKatie.jsx"></script>
+
+<script>
+  (function () {
+    var tries = 0;
+    function go() {
+      if (window.React && window.ReactDOM && typeof window.CuraAppKatie === "function") {
+        ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(window.CuraAppKatie));
+        return;
+      }
+      if (tries++ < 400) setTimeout(go, 25);
+    }
+    go();
+  })();
+</script>
+</body>
+</html>
