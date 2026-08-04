@@ -10,8 +10,8 @@ function HeaderKatie({ onContact }) {
   const links = [
     ["Why CuraMagis", "curamagis"],
     ["About Katie", "background"],
-    ["From Families", "families"],
     ["Our Approach", "approach"],
+    ["From Families", "families"],
     ["Our Programs", "process"],
     ["Next Steps", "engagements"],
   ];

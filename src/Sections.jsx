@@ -32,20 +32,18 @@ function KatieBio() {
         <Reveal delay={120}>
           <div style={{ display: "flex", flexDirection: "column", gap: 20, maxWidth: "64ch" }}>
             <p style={{ margin: 0, fontFamily: "var(--font-display)", fontSize: "clamp(1.5rem,2.4vw,2rem)", fontWeight: 600, lineHeight: 1.3, color: "var(--navy)" }}>
-              Katie has spent her career on both sides of college admissions, and that double vantage point shapes everything about how she works.
+              Katie has spent her career on both sides of college admissions, and that shapes everything about how she works.
             </p>
             <p style={{ margin: 0, fontFamily: "var(--font-body)", fontSize: 17.5, lineHeight: 1.65, color: "var(--ink-soft)" }}>
               A Boston College graduate with degrees in Human Development and Psychology, Katie went on to earn a Master's in Higher Education Administration before beginning her career in the BC Admissions Office. She then spent six years in the MIT Admissions Office as a senior member of the selection committee. Having grown up in the Netherlands and attended an international school there, she came to that work already familiar with how differently education can look from one country to the next. Between MIT and Boston College, she has evaluated more than twenty-six thousand applications from students in every part of the world. Few counselors have seen the inside of a highly selective admissions process at that depth and scale.
             </p>
             <p style={{ margin: 0, fontFamily: "var(--font-body)", fontSize: 17.5, lineHeight: 1.65, color: "var(--ink-soft)" }}>
-              After MIT, Katie served as Director of College and School Counseling at a Boston-area independent school before joining IvyWise as a Premier-level counselor, the top designation at the firm. She has worked one-on-one with students and families through every phase of the college process and has led training and professional development for counselors newer to the work.
+              After MIT, Katie served as Director of College and School Counseling at a Boston-area independent school before joining IvyWise as a Premier-level counselor, the top designation at the firm. She has worked one-on-one with students and families through every phase of the college process and has led training and professional development for professionals newer to the work.
             </p>
             <p style={{ margin: 0, fontFamily: "var(--font-body)", fontSize: 17.5, lineHeight: 1.65, color: "var(--ink-soft)" }}>
               What she brings to each student is the ability to read an application the way a committee does &mdash; she knows what feels authentic and what doesn't. The harder half of the work is translating that into something a high school student can actually use, and that is what she has spent the last decade doing.
             </p>
-            <p style={{ margin: 0, fontFamily: "var(--font-body)", fontSize: 17.5, lineHeight: 1.65, color: "var(--ink-soft)" }}>
-              Her goal for every student is the same: find their voice on the page, find the schools that are genuinely right for them, and come out of the process as more than an applicant. She adapts to each family and stays in it until the end.
-            </p>
+            
           </div>
         </Reveal>
       </div>
@@ -88,7 +86,10 @@ function WhyCuraMagis() {
         <Reveal delay={120}>
           <div style={{ display: "flex", flexDirection: "column", gap: 20, maxWidth: "62ch" }}>
             <p style={{ margin: 0, fontFamily: "var(--font-body)", fontSize: 19, lineHeight: 1.65, color: "var(--navy)" }}>
-              After years inside admissions offices and at a large firm, Katie built CuraMagis to work the way she believes this work should be done: a small number of families at a time, a flat rate set before we begin, and no meter running on your family's questions.
+              CuraMagis is built around how Katie counsels: a small number of families at a time, a flat rate set before we begin, and the freedom to spend as long as a student needs without anyone counting hours.
+            </p>
+            <p style={{ margin: 0, fontFamily: "var(--font-body)", fontSize: 17.5, lineHeight: 1.65, color: "var(--ink-soft)" }}>
+              Most of this process gets discussed in numbers: grades, scores, acceptance rates. Those matter, and they are the easy part to talk about. What actually decides an application is harder to quantify &mdash; what a student cares about, how they think, what they have made of the opportunities in front of them, and how that comes through on the page. That takes longer to build, and it takes intentionality: choices made deliberately over several years so that a student arrives at senior fall with a story to tell rather than gaps to explain. We start there.
             </p>
             <p style={{ margin: 0, fontFamily: "var(--font-body)", fontSize: 17.5, lineHeight: 1.65, color: "var(--ink-soft)" }}>
               The name says what we hold to. Great guidance means caring more deeply and reaching for more &mdash; not just caring about where a student lands, but caring more about who they become on the journey there.
@@ -113,9 +114,6 @@ function ApproachKatie() {
           <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem,3.4vw,2.9rem)", fontWeight: 600, color: "var(--navy)", margin: "16px 0 0", lineHeight: 1.12 }}>
             Three things we hold to with every student.
           </h2>
-          <p style={{ fontFamily: "var(--font-body)", fontSize: 19, lineHeight: 1.65, color: "var(--ink-soft)", margin: "22px 0 0", maxWidth: "64ch" }}>
-            Most of this process gets discussed in numbers: grades, scores, acceptance rates. Those matter, and they are the easy part to talk about. What actually decides an application is harder to quantify &mdash; what a student cares about, how they think, what they have made of the opportunities in front of them, and how that comes through on the page. That takes longer to build, and it takes intentionality: choices made deliberately over several years so that a student arrives at senior fall with a story to tell rather than gaps to explain. We start there.
-          </p>
         </div>
       </Reveal>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 28, marginTop: 48 }} className="cm-grid-pillars">
