@@ -4,18 +4,16 @@ function FooterKatie({ onContact }) {
     const el = document.getElementById(id);
     if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 78, behavior: "smooth" });
   };
+  const explore = [
+    ["Why CuraMagis", () => scrollTo("curamagis")],
+    ["About Katie", () => scrollTo("background")],
+    ["From Families", () => scrollTo("families")],
+    ["Our Approach", () => scrollTo("approach")],
+    ["Our Programs", () => scrollTo("process")],
+    ["Next Steps", () => scrollTo("engagements")],
+  ];
   const cols = [
-    ["Katie", [
-      ["Meet Katie", () => scrollTo("katie")],
-      ["Background", () => scrollTo("background")],
-      ["From Families", () => scrollTo("families")],
-    ]],
-    ["CuraMagis", [
-      ["Why CuraMagis", () => scrollTo("curamagis")],
-      ["How We Work", () => scrollTo("approach")],
-      ["Our Process", () => scrollTo("process")],
-      ["Working Together", () => scrollTo("engagements")],
-    ]],
+    ["Explore", explore, 2],
     ["Connect", [
       ["Start a conversation", () => onContact && onContact()],
       ["hello@curamagis.com", "mailto:hello@curamagis.com"],
@@ -24,7 +22,7 @@ function FooterKatie({ onContact }) {
   return (
     <footer style={{ background: "var(--navy-deep)", padding: "72px 0 36px" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1fr", gap: 40 }} className="cm-foot-grid">
+        <div style={{ display: "grid", gridTemplateColumns: "1.5fr 2fr 1fr", gap: 40 }} className="cm-foot-grid">
           <div>
             <Logo variant="white" height={30} />
             <p style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 20, lineHeight: 1.4, color: "var(--gold-mid)", margin: "20px 0 0", maxWidth: 300 }}>
@@ -32,9 +30,10 @@ function FooterKatie({ onContact }) {
             </p>
             <p style={{ fontFamily: "var(--font-body)", fontSize: 14, color: "var(--on-navy-muted)", margin: "14px 0 0" }}>Katie Burns, Founder</p>
           </div>
-          {cols.map(([h, items]) => (
+          {cols.map(([h, items, sub]) => (
             <div key={h}>
               <p style={{ fontFamily: "var(--font-body)", fontSize: 13, fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--gold-mid)", margin: "0 0 16px" }}>{h}</p>
+              <div style={sub ? { display: "grid", gridAutoFlow: "column", gridTemplateRows: "repeat(3, auto)", gridTemplateColumns: "1fr 1fr", gap: "0 40px" } : undefined}>
               {items.map(([label, action]) => {
                 const isMail = typeof action === "string";
                 return (
@@ -45,6 +44,7 @@ function FooterKatie({ onContact }) {
                     onMouseLeave={(e) => (e.target.style.color = "var(--on-navy-soft)")}>{label}</a>
                 );
               })}
+              </div>
             </div>
           ))}
         </div>

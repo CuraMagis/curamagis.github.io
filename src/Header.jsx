@@ -8,12 +8,12 @@ function HeaderKatie({ onContact }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   const links = [
-    ["Background", "background"],
-    ["From Families", "families"],
     ["Why CuraMagis", "curamagis"],
-    ["How We Work", "approach"],
-    ["Our Process", "process"],
-    ["Working Together", "engagements"],
+    ["About Katie", "background"],
+    ["From Families", "families"],
+    ["Our Approach", "approach"],
+    ["Our Programs", "process"],
+    ["Next Steps", "engagements"],
   ];
   const goTo = (id) => (e) => {
     e.preventDefault();

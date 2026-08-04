@@ -30,11 +30,19 @@
     .cm-cols-2 { column-count: 1 !important; }
     .cm-foot-grid { grid-template-columns: 1fr 1fr !important; }
   }
-  @media (max-width: 900px) {
+  @media (max-width: 900px) and (min-width: 621px) {
+    .cm-hero-grid { grid-template-columns: 1fr minmax(240px, 320px) !important; gap: 20px 40px !important; align-items: start !important; margin-top: 44px !important; }
+    .cm-hero-text { display: contents; }
+    .cm-hero-lede { grid-column: 1; grid-row: 1; }
+    .cm-hero-photo { grid-column: 2; grid-row: 1 / span 2; }
+    .cm-hero-body { grid-column: 1; grid-row: 2; }
+    .cm-hero-body > p:first-child { margin-top: 26px !important; }
+  }
+  @media (max-width: 620px) {
     .cm-hero-grid { display: flex !important; flex-direction: column; gap: 34px !important; align-items: stretch !important; }
     .cm-hero-text { display: contents; }
     .cm-hero-lede { order: 1; }
-    .cm-hero-photo { order: 2; align-self: flex-start; width: 100%; max-width: 340px; }
+    .cm-hero-photo { order: 2; }
     .cm-hero-body { order: 3; }
     .cm-hero-body > p:first-child { margin-top: 0 !important; }
   }
@@ -49,8 +57,14 @@
     .cm-hero-photo > div:first-child { aspect-ratio: 4 / 3 !important; }
     .cm-hero-photo img { object-position: 50% 22% !important; }
   }
-  @media (max-width: 1040px) {
-    .cm-hero-rail { flex-wrap: wrap !important; }
+  @media (max-width: 760px) {
+    .cm-hero-rail { grid-template-columns: 1fr 1fr !important; row-gap: 22px !important; }
+  }
+  @media (max-width: 620px) {
+    .cm-hero-logo { display: flex; justify-content: center; }
+  }
+  @media (max-width: 520px) {
+    .cm-steps-row { grid-template-columns: 1fr !important; gap: 16px !important; }
   }
   @media (max-width: 767px) {
     .cm-grid-2-md { grid-template-columns: 1fr !important; }
@@ -82,6 +96,8 @@
   @keyframes cmMarqueeR { from { transform: translateX(-50%); } to { transform: translateX(0); } }
   .cm-map-scroll { overflow-x: auto; }
   .cm-scrim { display: inline-block; padding: 5px 12px; border-radius: var(--radius-sm); background: color-mix(in srgb, var(--paper) 72%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .cm-scrim-navy { background: color-mix(in srgb, var(--navy-deep) 66%, transparent); }
+  .cm-veil { padding: 4px 14px; border-radius: var(--radius-sm); background: color-mix(in srgb, var(--navy-deep) 18%, transparent); backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px); }
   html { scroll-behavior: smooth; }
   section[id] { scroll-margin-top: 90px; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -95,13 +111,13 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
 <script type="text/babel" src="src/Primitives.jsx"></script>
-<script type="text/babel" src="src/Sections.jsx"></script>
+<script type="text/babel" src="src/Core.jsx"></script>
 <script type="text/babel" src="src/ContactDialog.jsx"></script>
-<script type="text/babel" src="src-katie/HeaderKatie.jsx"></script>
-<script type="text/babel" src="src-katie/HeroKatie.jsx"></script>
-<script type="text/babel" src="src-katie/SectionsKatie.jsx"></script>
-<script type="text/babel" src="src-katie/FooterKatie.jsx"></script>
-<script type="text/babel" src="src-katie/AppKatie.jsx"></script>
+<script type="text/babel" src="src/Header.jsx"></script>
+<script type="text/babel" src="src/Hero.jsx"></script>
+<script type="text/babel" src="src/Sections.jsx"></script>
+<script type="text/babel" src="src/Footer.jsx"></script>
+<script type="text/babel" src="src/App.jsx"></script>
 
 <script>
   (function () {

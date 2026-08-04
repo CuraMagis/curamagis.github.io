@@ -7,13 +7,13 @@ function CuraAppKatie() {
       <HeaderKatie onContact={open} />
       <main>
         <HeroKatie onContact={open} />
-        <KatieBio />
-        <Testimonials />
         <KatieQuote />
         <WhyCuraMagis />
+        <KatieBio />
         <ApproachKatie />
+        <Testimonials onContact={open} />
         <Process />
-        <Engagement onContact={open} />
+        <Engagement />
         <CTABandKatie onContact={open} />
       </main>
       <FooterKatie onContact={open} />
