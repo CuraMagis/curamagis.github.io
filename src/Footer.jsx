@@ -7,8 +7,8 @@ function FooterKatie({ onContact }) {
   const explore = [
     ["Why CuraMagis", () => scrollTo("curamagis")],
     ["About Katie", () => scrollTo("background")],
-    ["From Families", () => scrollTo("families")],
     ["Our Approach", () => scrollTo("approach")],
+    ["From Families", () => scrollTo("families")],
     ["Our Programs", () => scrollTo("process")],
     ["Next Steps", () => scrollTo("engagements")],
   ];
