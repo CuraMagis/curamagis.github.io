@@ -184,13 +184,16 @@ function Process() {
 
 // ---- Testimonials (placeholder copy — swap in real family quotes) ----
 function Testimonials({ onContact }) {
-  const quotes = [
+  const quotesAll = [
   ["Katie believed in me and encouraged me. She taught me to always dream bigger, to stay true to my identity, and to build unshakable confidence \u2014 and that we shouldn't be so hard on ourselves, that we deserve to be proud of ourselves. I will forever carry these lessons with me.", "Student, Class of 2026"],
   ["As an international family navigating U.S. college admissions, we always felt our child was in the best possible hands. Katie combined exceptional strategic expertise with genuine care for our family, providing clarity, honesty, and thoughtful guidance throughout a highly competitive admissions journey. What truly set her apart was her ability to balance high-level admissions knowledge with a personal commitment to our child's success and well-being.", "Parent, Class of 2026"],
   ["Katie brings a depth of knowledge about the admissions process that is hard to find, and what surprised us most was how she delivered it. The process felt organized and calm from the start; we had a clear plan, and the execution was smooth. She was always accessible, never added stress, and genuinely connected with our student in a way we didn't expect. We couldn't recommend her more strongly to any family navigating this process.", "Parent, Class of 2024"],
   ["Working with Katie was one of the best decisions we made for our family. She guided us through every part of the process, the straightforward moments and the harder ones, and always seemed to understand exactly what was happening and what to do next. Her advice was thoughtful and grounded, and we never felt alone in navigating it. We are so grateful for everything she did for our children.", "Parent, Class of 2024, 2025"],
   ["Katie truly cared about helping me submit the strongest application possible. She never settled for \u2018good enough\u2019 \u2014 she pushed me to think deeper, refine every detail, and only submit work that genuinely reflected my best. At the same time, I always felt that she had my best interests at heart. Her dedication, honesty, and commitment made me a stronger applicant, and I\u2019m incredibly grateful to have had her guidance throughout the college application process.", "Student, Class of 2026"],
-  ["Katie's expertise gave us the confidence to step back and trust the process completely and that was such a gift as parents. But what we didn't expect was how much she would become part of our family through this experience. She was a true partner to our son every step of the way, and we are so grateful she was with us for this chapter.", "Parent, Class of 2025"]];
+  ["Katie's expertise gave us the confidence to step back and trust the process completely and that was such a gift as parents. But what we didn't expect was how much she would become part of our family through this experience. She was a true partner to our son every step of the way, and we are so grateful she was with us for this chapter.", "Parent, Class of 2025"],
+  ["From our very first Zoom call, I knew Katie was the right fit for me and my needs. Starting with her early in high school gave us time to build a trusting relationship well before the pressure of applications began, and that only strengthened our work together. When I got into my dream school, Katie was the first person I told, and she was truly just as happy as I was. I don't think I'd be where I am today without her.", "Student, Class of 2024"]];
+
+  const quotes = [2, 4, 6, 5, 1, 0, 3].map((i) => quotesAll[i]);
 
   const [active, setActive] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
