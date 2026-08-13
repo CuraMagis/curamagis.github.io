@@ -54,7 +54,8 @@ server.close();
 
 const template = readFileSync('index.html', 'utf8');
 // Strip any previously injected pre-rendered content (idempotent re-runs)
-const stripped = template.replace(/<div id="root">[\s\S]*?<\/div>/, '<div id="root"></div>');
+// Anchor on the blank line + <script src that follows the root closing tag
+const stripped = template.replace(/<div id="root">[\s\S]*?<\/div>(?=\s*\n\s*\n\s*<script\s+src)/, '<div id="root"></div>');
 const output = stripped.replace('<div id="root"></div>', `<div id="root">${renderedRoot}</div>`);
 writeFileSync('index.html', output, 'utf8');
 console.log(`Done. index.html is now ${output.length} bytes with pre-rendered content.`);
