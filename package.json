@@ -1,0 +1,11 @@
+{
+  "name": "curamagis-site",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "puppeteer": "^22.0.0"
+  },
+  "scripts": {
+    "prerender": "node prerender.mjs"
+  }
+}

@@ -124,7 +124,12 @@
     var tries = 0;
     function go() {
       if (window.React && window.ReactDOM && typeof window.CuraAppKatie === "function") {
-        ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(window.CuraAppKatie));
+        var _el = document.getElementById("root");
+        if (_el.hasChildNodes()) {
+          ReactDOM.hydrateRoot(_el, React.createElement(window.CuraAppKatie));
+        } else {
+          ReactDOM.createRoot(_el).render(React.createElement(window.CuraAppKatie));
+        }
         return;
       }
       if (tries++ < 400) setTimeout(go, 25);
