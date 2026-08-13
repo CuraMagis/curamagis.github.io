@@ -34,7 +34,10 @@ const server = createServer((req, res) => {
 await new Promise(r => server.listen(PORT, r));
 console.log(`Serving at http://localhost:${PORT}`);
 
-const browser = await puppeteer.launch({ headless: true });
+const browser = await puppeteer.launch({
+  headless: true,
+  executablePath: '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser',
+});
 const page = await browser.newPage();
 
 page.on('console', msg => console.log('[browser]', msg.text()));
