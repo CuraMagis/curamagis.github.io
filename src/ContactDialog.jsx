@@ -8,9 +8,12 @@ function ContactDialog({ open, onClose }) {
   const [sent, setSent] = useStateD(false);
   const [sending, setSending] = useStateD(false);
   const [error, setError] = useStateD("");
-  const [form, setForm] = useStateD({ name: "", email: "", grade: "", note: "" });
+  const [form, setForm] = useStateD({ name: "", email: "", source: "", referrer: "", sourceOther: "", grade: "", note: "" });
   if (!open) return null;
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+  const isReferral = form.source.startsWith("Referral");
+  const isOther = form.source === "Other";
+  const sourceDetail = isReferral ? form.referrer : isOther ? form.sourceOther : "";
 
   const submit = async (e) => {
     e.preventDefault();
@@ -31,6 +34,7 @@ function ContactDialog({ open, onClose }) {
           from_name: "CuraMagis website",
           name: form.name,
           email: form.email,
+          "How did you hear about us": form.source + (sourceDetail ? ` \u2014 ${sourceDetail}` : ""),
           "Student's grade": form.grade,
           "How can we help": form.note,
           botcheck: false,
@@ -84,10 +88,23 @@ function ContactDialog({ open, onClose }) {
               <Field label="Email" type="email" placeholder="jane@email.com" value={form.email} onChange={set("email")} required />
             </div>
             <div style={{ marginTop: 18 }}>
-              <Field label="Student's grade" placeholder="e.g. 11th grade" value={form.grade} onChange={set("grade")} />
+              <Field label="How did you hear about us?" placeholder="Select one…" value={form.source} onChange={set("source")} required options={["Referral from a friend/family member", "Referral from a doctor or advisor", "Google search", "Social media", "Saw a talk/presentation", "Other"]} />
+            </div>
+            {isReferral ? (
+              <div style={{ marginTop: 18 }}>
+                <Field label="Who referred you?" placeholder="Name of the person who referred you" value={form.referrer} onChange={set("referrer")} required />
+              </div>
+            ) : null}
+            {isOther ? (
+              <div style={{ marginTop: 18 }}>
+                <Field label="How did you find us?" placeholder="Tell us a little more" value={form.sourceOther} onChange={set("sourceOther")} required />
+              </div>
+            ) : null}
+            <div style={{ marginTop: 18 }}>
+              <Field label="Student's grade" placeholder="e.g. 11th grade" value={form.grade} onChange={set("grade")} required />
             </div>
             <div style={{ marginTop: 18 }}>
-              <Field label="How can we help?" multiline placeholder="Tell us a little about your student…" value={form.note} onChange={set("note")} hint="No pressure, no obligation — just a conversation." />
+              <Field label="How can we help?" multiline placeholder="Tell us a little about your student…" value={form.note} onChange={set("note")} required hint="No pressure, no obligation — just a conversation." />
             </div>
             {error ? (
               <p style={{ fontFamily: "var(--font-body)", fontSize: 15, lineHeight: 1.5, color: "var(--ink-alert)", margin: "18px 0 0" }}>{error}</p>

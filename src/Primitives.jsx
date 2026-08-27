@@ -102,7 +102,7 @@ function Divider({ ornament = true, onNavy }) {
 
 }
 
-function Field({ label, type = "text", placeholder, value, onChange, hint, multiline, required }) {
+function Field({ label, type = "text", placeholder, value, onChange, hint, multiline, required, options }) {
   const [focus, setFocus] = useState(false);
   const sharedStyle = {
     width: "100%", boxSizing: "border-box", fontFamily: "var(--font-body)",
@@ -117,13 +117,20 @@ function Field({ label, type = "text", placeholder, value, onChange, hint, multi
       <label style={{ display: "block", fontFamily: "var(--font-body)", fontSize: 13, fontWeight: 600, color: "var(--navy)", marginBottom: 6 }}>
         {label}{required && <span style={{ color: "var(--gold)" }}> ·</span>}
       </label>
-      {multiline ?
+      {options ?
+      <select value={value} onChange={onChange} required={required}
+      onFocus={() => setFocus(true)} onBlur={() => setFocus(false)}
+      style={{ ...sharedStyle, appearance: "none", cursor: "pointer", color: value ? "var(--navy)" : "var(--ink-muted)", backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230C4160' stroke-width='1.5'><path d='M6 9l6 6 6-6'/></svg>\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center", paddingRight: 36 }}>
+            <option value="" disabled>{placeholder || "Select one…"}</option>
+            {options.map((o) => <option key={o} value={o}>{o}</option>)}
+          </select> :
+      multiline ?
       <textarea rows={4} placeholder={placeholder} value={value}
       onChange={onChange} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)}
-      style={{ ...sharedStyle, resize: "vertical" }} /> :
+      required={required} style={{ ...sharedStyle, resize: "vertical" }} /> :
       <input type={type} placeholder={placeholder} value={value}
       onChange={onChange} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)}
-      style={sharedStyle} />}
+      required={required} style={sharedStyle} />}
       {hint && <p style={{ fontFamily: "var(--font-body)", fontSize: 13, color: "var(--ink-muted)", margin: "5px 0 0" }}>{hint}</p>}
     </div>);
 
