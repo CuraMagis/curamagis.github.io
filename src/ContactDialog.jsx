@@ -24,6 +24,9 @@ function ContactDialog({ open, onClose }) {
       return;
     }
     setSending(true); setError("");
+    let attr = {};
+    try { attr = JSON.parse(sessionStorage.getItem("cm_attr") || "{}"); } catch (e) {}
+    const campaign = [attr.utm_source, attr.utm_medium, attr.utm_campaign].filter(Boolean).join(" / ");
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -37,13 +40,22 @@ function ContactDialog({ open, onClose }) {
           "How did you hear about us": form.source + (sourceDetail ? ` \u2014 ${sourceDetail}` : ""),
           "Student's grade": form.grade,
           "How can we help": form.note,
+          "Auto — Referrer": attr.referrer || "(direct / none)",
+          "Auto — Landing page": attr.landing || "",
+          "Auto — Campaign": campaign || "(none)",
+          "Auto — Click ID": attr.click_id || "",
+          "Auto — First seen": attr.first_seen || "",
           botcheck: false,
         }),
       });
       const data = await res.json();
       if (data.success) {
         setSent(true);
-        track("generate_lead", { method: "contact_form" });
+        track("generate_lead", {
+          method: form.source || "unspecified",
+          student_grade: form.grade || "",
+          campaign: campaign || "(none)",
+        });
       } else {
         console.warn("Web3Forms:", data.message);
         setError(fallback);
