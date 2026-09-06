@@ -1,4 +1,4 @@
-/* global React, Logo, Button, Icon */
+/* global React, Logo, Button, Icon, track */
 function HeaderKatie({ onContact }) {
   const [scrolled, setScrolled] = React.useState(false);
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -34,11 +34,11 @@ function HeaderKatie({ onContact }) {
               onMouseEnter={(e) => (e.target.style.color = "var(--white)")}
               onMouseLeave={(e) => (e.target.style.color = "var(--on-navy-soft)")}>{l}</a>
           ))}
-          <Button variant="onNavy" size="sm" onClick={onContact}>Start a conversation</Button>
+          <Button variant="onNavy" size="sm" onClick={() => { track("cta_click", { cta_location: "header" }); onContact(); }}>Start a conversation</Button>
         </nav>
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           <span className="cm-cta-compact" style={{ display: "none" }}>
-            <Button variant="onNavy" size="sm" onClick={onContact}>Start a conversation</Button>
+            <Button variant="onNavy" size="sm" onClick={() => { track("cta_click", { cta_location: "header_compact" }); onContact(); }}>Start a conversation</Button>
           </span>
           <button className="cm-menu-btn" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu"
             style={{ display: "none", background: "none", border: 0, color: "var(--white)", cursor: "pointer", padding: 6 }}>
@@ -52,7 +52,7 @@ function HeaderKatie({ onContact }) {
             <a key={l} href={"#" + id} onClick={goTo(id)} style={{ ...linkStyle, display: "block", padding: "13px 0", fontSize: 19, borderBottom: "1px solid rgba(255,255,255,0.08)" }}>{l}</a>
           ))}
           <div style={{ marginTop: 18 }}>
-            <Button variant="onNavy" onClick={() => { setMenuOpen(false); onContact(); }}>Start a conversation</Button>
+            <Button variant="onNavy" onClick={() => { track("cta_click", { cta_location: "mobile_menu" }); setMenuOpen(false); onContact(); }}>Start a conversation</Button>
           </div>
         </div>
       )}

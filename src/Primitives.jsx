@@ -1,6 +1,12 @@
 /* global React */
 const { useState, useEffect, useRef } = React;
 
+// Fires a GA4 event if gtag is loaded (e.g. blocked by an ad blocker) — never throws.
+function track(name, params) {
+  if (typeof window.gtag === "function") window.gtag("event", name, params);
+}
+window.track = track;
+
 // ---- Lucide icon (CDN sprite via dynamic <i data-lucide>) replaced with inline SVG paths ----
 // Minimal Lucide-style line icons (1.5 stroke). Keeps the kit self-contained.
 const ICONS = {

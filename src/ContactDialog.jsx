@@ -1,4 +1,4 @@
-/* global React, Field, Button, Icon, Logo, Eyebrow */
+/* global React, Field, Button, Icon, Logo, Eyebrow, track */
 const { useState: useStateD } = React;
 
 /* Web3Forms access key — replace with the key emailed to you by web3forms.com */
@@ -41,11 +41,18 @@ function ContactDialog({ open, onClose }) {
         }),
       });
       const data = await res.json();
-      if (data.success) setSent(true);
-      else { console.warn("Web3Forms:", data.message); setError(fallback); }
+      if (data.success) {
+        setSent(true);
+        track("generate_lead", { method: "contact_form" });
+      } else {
+        console.warn("Web3Forms:", data.message);
+        setError(fallback);
+        track("form_error", { form_name: "contact", reason: "rejected" });
+      }
     } catch (err) {
       console.warn("Web3Forms:", err);
       setError(fallback);
+      track("form_error", { form_name: "contact", reason: "network" });
     }
     setSending(false);
   };

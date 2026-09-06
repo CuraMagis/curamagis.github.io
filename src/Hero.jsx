@@ -1,4 +1,4 @@
-/* global React, Button, Logo, Photo */
+/* global React, Button, Logo, Photo, track */
 function HeroKatie({ onContact }) {
   const [scrolled, setScrolled] = React.useState(false);
   React.useEffect(() => {
@@ -39,7 +39,7 @@ function HeroKatie({ onContact }) {
                 Katie Burns has spent eighteen years on every side of this process: reading and evaluating more than twenty-six thousand applications at MIT and Boston College, six of them as a senior member of the MIT selection committee; guiding students as Director of College and School Counseling at an independent school; and, for the last eight years, working one-on-one with families, most recently as a Premier counselor at IvyWise. She knows what makes an application work. She also knows the application is the last part of the story &mdash; the real work is who a student becomes along the way, and helping them tell it.
               </p>
               <div className="cm-hero-cta" style={{ display: "flex", gap: 14, marginTop: 36, flexWrap: "wrap" }}>
-                <Button variant="onNavy" size="lg" onClick={onContact} icon="arrowRight">Start a conversation</Button>
+                <Button variant="onNavy" size="lg" onClick={() => { track("cta_click", { cta_location: "hero" }); onContact(); }} icon="arrowRight">Start a conversation</Button>
               </div>
             </div>
           </div>

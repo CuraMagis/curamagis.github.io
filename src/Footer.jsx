@@ -1,4 +1,4 @@
-/* global React, Logo, Divider */
+/* global React, Logo, Divider, track */
 function FooterKatie({ onContact }) {
   const scrollTo = (id) => {
     const el = document.getElementById(id);
@@ -15,7 +15,7 @@ function FooterKatie({ onContact }) {
   const cols = [
     ["Explore", explore, 2],
     ["Connect", [
-      ["Start a conversation", () => onContact && onContact()],
+      ["Start a conversation", () => { track("cta_click", { cta_location: "footer" }); onContact && onContact(); }],
       ["hello@curamagis.com", "mailto:hello@curamagis.com"],
     ]],
   ];
@@ -38,7 +38,7 @@ function FooterKatie({ onContact }) {
                 const isMail = typeof action === "string";
                 return (
                   <a key={label} href={isMail ? action : "#"}
-                    onClick={isMail ? undefined : (e) => { e.preventDefault(); action(); }}
+                    onClick={isMail ? () => track("contact_click", { method: "email" }) : (e) => { e.preventDefault(); action(); }}
                     style={{ display: "block", fontFamily: "var(--font-body)", fontSize: 16, color: "var(--on-navy-soft)", textDecoration: "none", padding: "5px 0", cursor: "pointer" }}
                     onMouseEnter={(e) => (e.target.style.color = "var(--white)")}
                     onMouseLeave={(e) => (e.target.style.color = "var(--on-navy-soft)")}>{label}</a>
