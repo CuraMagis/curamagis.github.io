@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /curamagis-crm/
+Allow: /
+
+Sitemap: https://curamagis.com/sitemap.xml
